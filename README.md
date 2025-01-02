@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EduConnect - Платформа для совместного обучения
 
-## Getting Started
+EduConnect — это современная платформа, где пользователи могут делиться учебными материалами, комментировать и оценивать статьи, создавая динамичное и полезное сообщество для обучения.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Функциональные возможности
+
+- **Регистрация и авторизация:**
+
+  - Вход с помощью email и пароля.
+  - Редактирование профиля (имя, фото, описание).
+
+- **Публикация контента:**
+
+  - Создание статей с использованием Markdown.
+  - Загрузка вложений (PDF, изображения, ссылки).
+
+- **Социальное взаимодействие:**
+
+  - Лайки и комментарии к статьям.
+  - Поиск материалов по категориям или ключевым словам.
+
+- **Административные функции:**
+  - Модерация контента и комментариев.
+  - Управление пользователями.
+
+---
+
+## Установка и запуск
+
+1. **Клонирование репозитория:**
+
+   ```bash
+   git clone <URL репозитория>
+   cd educonnect
+   ```
+
+2. **Установка зависимостей:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Настройка окружения:**
+   Создайте файл `.env` в корне проекта и добавьте:
+
+   ```env
+   PORT=3000
+   API_URL=http://localhost:3000
+   ```
+
+4. **Запуск в режиме разработки:**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Сборка и запуск в продакшене:**
+
+   ```bash
+   npm run build
+   npm start
+   ```
+
+---
+
+## Стек технологий
+
+- **Next.js** — фреймворк для серверного и клиентского рендеринга.
+- **React** — библиотека для построения интерфейсов.
+- **Node.js** и **Express** — серверная часть.
+- **TypeScript** — для типизации.
+- **Tailwind CSS** — утилитарный фреймворк для стилизации.
+
+Дополнительно:
+
+- **Axios** для работы с API.
+- **Framer Motion** для анимаций.
+- **Jest** для тестирования.
+
+---
+
+## Структура проекта
+
+```
+my-nextjs-project/
+├── components/       # Компоненты React
+├── pages/            # Страницы Next.js
+│   ├── api/          # API-роуты
+├── public/           # Статические файлы
+├── styles/           # Стили
+├── utils/            # Утилиты
+├── server/           # Серверная логика
+├── .env              # Переменные окружения
+├── package.json      # Зависимости
+└── tsconfig.json     # Конфигурация TypeScript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Тестирование
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Установка зависимостей для тестирования:**
 
-## Learn More
+   ```bash
+   npm install jest @testing-library/react @testing-library/jest-dom -D
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Запуск тестов:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm run test
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Пример теста:**
 
-## Deploy on Vercel
+   ```tsx
+   import { render, screen } from "@testing-library/react";
+   import Header from "./components/Header";
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   test("renders header text", () => {
+     render(<Header />);
+     const headerElement = screen.getByText(/Добро пожаловать в EduConnect/i);
+     expect(headerElement).toBeInTheDocument();
+   });
+   ```
